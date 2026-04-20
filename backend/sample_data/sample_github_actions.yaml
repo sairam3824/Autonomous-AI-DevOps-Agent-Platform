@@ -1,0 +1,65 @@
+# This is an intentionally imperfect GitHub Actions workflow for demo purposes.
+# The Pipeline Agent should detect several anti-patterns here.
+
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Anti-pattern: No dependency caching
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # Anti-pattern: No artifact upload
+      # The build output is lost after this job
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      # Anti-pattern: Rebuilding everything instead of using artifacts
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build again
+        run: npm run build
+
+      # Anti-pattern: Using latest tag
+      - name: Build Docker image
+        run: docker build -t myapp:latest .
+
+      # Anti-pattern: Hardcoded values that should be secrets
+      - name: Deploy
+        run: |
+          echo "Deploying to production"
+          # deploy_password: supersecret123
+        env:
+          DEPLOY_SERVER: 192.168.1.100

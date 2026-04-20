@@ -1,0 +1,39 @@
+2024-11-15T08:23:14.521Z INFO  [kube-system] Starting kubelet v1.28.4
+2024-11-15T08:23:15.102Z INFO  [default] Pod web-app-7d8f9b6c4d-x2k9m scheduled to node worker-01
+2024-11-15T08:23:16.334Z INFO  [default] Pulling image "registry.example.com/web-app:v2.3.1"
+2024-11-15T08:23:45.221Z INFO  [default] Successfully pulled image "registry.example.com/web-app:v2.3.1"
+2024-11-15T08:23:46.001Z INFO  [default] Container web-app started
+2024-11-15T08:23:47.523Z ERROR [default] Container web-app exited with code 1
+2024-11-15T08:23:47.524Z WARN  [default] Back-off restarting failed container web-app in pod web-app-7d8f9b6c4d-x2k9m
+2024-11-15T08:23:58.102Z ERROR [default] Pod web-app-7d8f9b6c4d-x2k9m status: CrashLoopBackOff
+2024-11-15T08:24:00.001Z ERROR [default] Container logs: Error: Cannot find module '/app/server.js'
+2024-11-15T08:24:00.002Z ERROR [default] Container logs: at Module._resolveFilename (node:internal/modules/cjs/loader:1077:15)
+2024-11-15T08:24:15.443Z WARN  [default] Back-off 10s restarting failed container
+2024-11-15T08:24:35.221Z ERROR [default] Pod web-app-7d8f9b6c4d-x2k9m CrashLoopBackOff - back-off 20s
+
+2024-11-15T09:10:22.001Z INFO  [production] Deploying api-service v3.0.0
+2024-11-15T09:10:23.112Z INFO  [production] Pod api-service-5f8d7c9b2a-m3k7p scheduled to node worker-02
+2024-11-15T09:10:24.334Z INFO  [production] Container api-service started
+2024-11-15T09:12:45.667Z ERROR [production] Container api-service OOMKilled
+2024-11-15T09:12:45.668Z ERROR [production] Pod api-service-5f8d7c9b2a-m3k7p terminated: OOMKilled (memory limit: 256Mi, usage exceeded)
+2024-11-15T09:12:46.001Z WARN  [production] Pod api-service-5f8d7c9b2a-m3k7p restarting (attempt 1)
+2024-11-15T09:14:22.112Z ERROR [production] Container api-service OOMKilled again
+2024-11-15T09:14:22.113Z ERROR [production] Recommendation: Increase memory limit from 256Mi to at least 512Mi
+
+2024-11-15T10:30:00.001Z INFO  [staging] Deploying frontend v1.5.0
+2024-11-15T10:30:01.221Z ERROR [staging] Failed to pull image "registry.internal.com/frontend:v1.5.0"
+2024-11-15T10:30:01.222Z ERROR [staging] Error: ErrImagePull - unauthorized: authentication required
+2024-11-15T10:30:15.334Z ERROR [staging] ImagePullBackOff for pod frontend-6c8d5b7a3f-j9k2l
+2024-11-15T10:30:15.335Z WARN  [staging] Verify imagePullSecrets are configured for namespace staging
+2024-11-15T10:31:00.112Z ERROR [staging] Back-off pulling image "registry.internal.com/frontend:v1.5.0"
+
+2024-11-15T11:00:00.001Z WARN  [monitoring] Node worker-03 disk pressure detected
+2024-11-15T11:00:01.112Z WARN  [monitoring] Node worker-03 conditions: DiskPressure=True
+2024-11-15T11:00:15.001Z ERROR [monitoring] Pod prometheus-0 Evicted from worker-03 due to disk pressure
+2024-11-15T11:00:15.002Z ERROR [monitoring] Pod grafana-7d8f9b6c4d-p5q8r Evicted from worker-03
+
+2024-11-15T12:00:00.001Z INFO  [default] Scaling deployment payment-service from 2 to 5 replicas
+2024-11-15T12:00:01.112Z WARN  [default] Pod payment-service-4e7c6b5a2d-new1 Pending
+2024-11-15T12:00:01.113Z WARN  [default] Pod payment-service-4e7c6b5a2d-new2 Pending
+2024-11-15T12:00:15.334Z ERROR [default] FailedScheduling: 0/3 nodes are available: insufficient cpu
+2024-11-15T12:00:15.335Z WARN  [default] Requested: 500m CPU, Available on nodes: 200m, 150m, 100m
