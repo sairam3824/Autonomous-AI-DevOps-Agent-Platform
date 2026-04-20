@@ -321,3 +321,6 @@ make seed
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](./LICENSE) for the full text.
+
+---
+*Autonomous AI DevOps Agent Platform - v1.0.0-alpha*
