@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f5f0e8;
+  --bg-muted: rgba(255, 255, 255, 0.58);
+  --panel: rgba(255, 255, 255, 0.68);
+  --panel-strong: rgba(255, 255, 255, 0.82);
+  --ink: #1f1a17;
+  --ink-soft: #5c5149;
+  --accent: #8a6a3d;
+  --accent-soft: rgba(138, 106, 61, 0.12);
+  --line: rgba(111, 89, 61, 0.12);
+}
+
+@layer base {
+  * {
+    border-color: transparent;
+  }
+
+  html {
+    min-height: 100%;
+    background:
+      radial-gradient(circle at top left, rgba(214, 195, 164, 0.38), transparent 32%),
+      radial-gradient(circle at top right, rgba(180, 202, 202, 0.26), transparent 28%),
+      linear-gradient(180deg, #f8f5ef 0%, #efe7dc 100%);
+  }
+
+  body {
+    @apply min-h-screen antialiased;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.75), transparent 36%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), serif;
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    background: rgba(138, 106, 61, 0.16);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(138, 106, 61, 0.22);
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .premium-surface {
+    background: var(--panel);
+    box-shadow:
+      0 24px 80px rgba(97, 74, 49, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(18px);
+  }
+
+  .premium-surface-strong {
+    background: var(--panel-strong);
+    box-shadow:
+      0 24px 80px rgba(97, 74, 49, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.54);
+    backdrop-filter: blur(20px);
+  }
+
+  .premium-label {
+    @apply text-[11px] uppercase tracking-[0.28em];
+    color: var(--ink-soft);
+  }
+
+  .premium-title {
+    @apply text-3xl md:text-4xl;
+    color: var(--ink);
+  }
+}
